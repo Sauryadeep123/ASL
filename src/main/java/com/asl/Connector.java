@@ -15,7 +15,7 @@ public class Connector {
 		String url="";
 		String username="";
 		String password="";
-		String fileName = "src/main/java/com/asl/resource/config.properties";
+		String fileName = "src/main/java/com/asl/resources/config.properties";
 		try {
 		Properties p=new Properties();
 		
@@ -39,8 +39,8 @@ public class Connector {
 			
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");  
-			 con=DriverManager.getConnection(url,username,password);
-			//con=DriverManager.getConnection("jdbc:mysql://localhost:3306/project1","roy","sauryadeep");
+//			 con=DriverManager.getConnection(url,username,password);
+			con=DriverManager.getConnection("jdbc:mysql://localhost:3306/asl","chirag","chirag");
 			
 			
 			
