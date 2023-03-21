@@ -55,7 +55,7 @@ public class Register extends HttpServlet {
 				String email2 = rs.getString("email");
 				if (email.equals(email2)) {
 					flag = false;
-					RequestDispatcher rd = req.getRequestDispatcher("notpresent.html");
+					RequestDispatcher rd = req.getRequestDispatcher("AlreadyUser.html");
 					rd.include(req, res);
 					RequestDispatcher rd2 = req.getRequestDispatcher("login.html");
 					rd2.include(req, res);
@@ -102,7 +102,7 @@ public class Register extends HttpServlet {
 		final String partHeader = part.getHeader("content-disposition");
 		for (String content : partHeader.split(";")) {
 			if (content.trim().startsWith("filename")) {
-				return content.substring(content.indexOf('=') + 1).trim().replace("\"", "");
+				return email+content.substring(content.indexOf('=') + 1).trim().replace("\"", "");
 			}
 		}
 		return null;
