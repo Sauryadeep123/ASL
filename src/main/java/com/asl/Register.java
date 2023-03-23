@@ -57,7 +57,7 @@ public class Register extends HttpServlet {
 					flag = false;
 					RequestDispatcher rd = req.getRequestDispatcher("AlreadyUser.html");
 					rd.include(req, res);
-					RequestDispatcher rd2 = req.getRequestDispatcher("login.html");
+					RequestDispatcher rd2 = req.getRequestDispatcher("Login.html");
 					rd2.include(req, res);
 				}
 			}
@@ -88,7 +88,7 @@ public class Register extends HttpServlet {
 
 					RequestDispatcher rd=req.getRequestDispatcher("RegistrationSuccess.html");
 		        	rd.include(req, res);
-		        	RequestDispatcher rd2=req.getRequestDispatcher("login.html");
+		        	RequestDispatcher rd2=req.getRequestDispatcher("Login.html");
 		        	rd2.include(req, res);
 				}
 			}
