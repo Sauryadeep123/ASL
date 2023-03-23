@@ -47,7 +47,7 @@ public class Register extends HttpServlet {
 		try {
 			Connection con = Connector.getConnection();
 
-			String sql = "select email from EmployeesDetails";
+			String sql = "select email from employees_details";
 			PreparedStatement p = con.prepareStatement(sql);
 			ResultSet rs = p.executeQuery();
 
@@ -64,7 +64,7 @@ public class Register extends HttpServlet {
 
 			if (flag) {
 				PreparedStatement ps = con.prepareStatement(
-						"INSERT INTO EmployeesDetails (FirstName,MiddleName,LastName,email,city,dob,userid,photo,resume)"
+						"INSERT INTO employees_details (FirstName,MiddleName,LastName,email,city,dob,userid,photo,resume)"
 								+ " values (?,?,?,?,?,?,?,?,?);");
 				ps.setString(1, firstName);
 				ps.setString(2, middleName);

@@ -40,7 +40,7 @@ public class Login extends HttpServlet {
 		        try {
 		        	conn=Connector.getConnection();
 		        	System.out.println("Successs!!");
-		        	 String sql = "select * from EmployeesDetails";
+		        	 String sql = "select * from employees_details";
 			            p = conn.prepareStatement(sql);
 			            rs = p.executeQuery();
 			           
@@ -138,7 +138,7 @@ public class Login extends HttpServlet {
 		        if(flag==0) {
 		        	RequestDispatcher rd=req.getRequestDispatcher("notpresent.html");
 		        	rd.include(req, res);
-		        	RequestDispatcher rd2=req.getRequestDispatcher("login.html");
+		        	RequestDispatcher rd2=req.getRequestDispatcher("Login.html");
 		        	rd2.include(req, res);
 		        	
 		        	
