@@ -37,6 +37,7 @@ public class Register extends HttpServlet {
 		String middleName = req.getParameter("middleName");
 		String lastName = req.getParameter("lastName");
 		String email = req.getParameter("email");
+		String password = req.getParameter("password");
 		String city = req.getParameter("city");
 		String dob = (String) req.getParameter("dob");
 		Part partPhoto = req.getPart("photo");
@@ -47,7 +48,7 @@ public class Register extends HttpServlet {
 		try {
 			Connection con = Connector.getConnection();
 
-			String sql = "select email from EmployeesDetails";
+			String sql = "select email from employees_details";
 			PreparedStatement p = con.prepareStatement(sql);
 			ResultSet rs = p.executeQuery();
 
@@ -64,7 +65,7 @@ public class Register extends HttpServlet {
 
 			if (flag) {
 				PreparedStatement ps = con.prepareStatement(
-						"INSERT INTO EmployeesDetails (FirstName,MiddleName,LastName,email,city,dob,userid,photo,resume)"
+						"INSERT INTO employees_details (FirstName,MiddleName,LastName,email,city,dob,userid,photo,resume)"
 								+ " values (?,?,?,?,?,?,?,?,?);");
 				ps.setString(1, firstName);
 				ps.setString(2, middleName);
@@ -77,6 +78,22 @@ public class Register extends HttpServlet {
 				ps.setString(9,getFileName(partResume,email));
 
 			int i=ps.executeUpdate();
+			
+			ps = con.prepareStatement(
+					"INSERT INTO employees_list (FirstName,email,userid)"
+							+ " values (?,?,?);");
+			ps.setString(1, firstName);
+			ps.setString(2, email);
+			ps.setString(3, "ALU9898");
+			ps.executeUpdate();
+			
+			ps = con.prepareStatement(
+					"INSERT INTO login_details (email,password)"
+							+ " values (?,?);");
+			ps.setString(1, email);
+			ps.setString(2, password);
+			ps.executeUpdate();
+			
 //			
 			if(i==1)
 				{
