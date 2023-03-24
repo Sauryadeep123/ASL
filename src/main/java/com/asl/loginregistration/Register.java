@@ -1,4 +1,4 @@
-package com.asl;
+package com.asl.loginregistration;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -19,6 +19,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+
+import com.asl.connector.Connector;
 
 /**
  * Servlet implementation class Register
