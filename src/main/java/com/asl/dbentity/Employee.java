@@ -1,6 +1,6 @@
 package com.asl.dbentity;
 
-public class EmployeeList
+public class Employee
 {
 	private int serialNo;
 	private String firstName;
@@ -10,10 +10,10 @@ public class EmployeeList
 	public int getSerialNo() {
 		return serialNo;
 	}
-	public EmployeeList() {
+	public Employee() {
 	
 	}
-	public EmployeeList(int serialNo, String firstName, String email, String userId, String password) {
+	public Employee(int serialNo, String firstName, String email, String userId, String password) {
 		super();
 		this.serialNo = serialNo;
 		this.firstName = firstName;

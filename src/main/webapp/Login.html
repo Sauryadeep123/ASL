@@ -25,12 +25,13 @@
 	integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
 	crossorigin="anonymous"></script>
 
-<script src="login.js"></script>
+<script src="javascript/login.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <script src="javascript/login.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" ></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 </head>
 <body
@@ -66,15 +67,54 @@
 
 								<div class="row align-items-center py-3 text-center">
 									<div class="px-4 py-4">
-										<button type="button" id="submitBtn"
-											class="btn btn-primary btn-lg">Submit</button>
+										<input type="button" id="submitBtn" value="submit"
+											class="btn btn-primary btn-lg">
 									</div>
 								</div>
 							</form>
-							<div id="response1"></div>
-							<div id="response2"></div>
-							<div id="response3"></div>
-							<div id="response4"></div>
+							<div id="mainresponse" style="display:none">
+
+ 
+
+<table class="table">
+
+<thead class="thead-dark">
+
+<tr>
+
+<th scope="col">S.No</th>
+
+<th scope="col">Name</th>
+
+<th scope="col">Email</th>
+
+<th scope="col">City</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr id="r1">
+
+<th scope="row" class="c1">1</th>
+
+<td class="c2"></td>
+
+<td class="c3"></td>
+
+<td class="c3"></td>
+
+</tr>
+
+ 
+
+</tbody>
+
+</table>
+
+</div>
 
 
 						</div>
@@ -98,7 +138,10 @@
 
 	<script>
 		$(document).ready(function() {
-			$('#submitBtn').click(function() {
+			$('#submitBtn').click(function(event) {
+				event.preventDefault();
+				if(validate())
+					{
 				var formData = {
 					email : $('#email').val(),
 					password : $('#password').val()
@@ -114,33 +157,49 @@
 
 				.done(function(data) {
 
-					$(document).ready(function() {
+					$("#myform").hide();
 
-						$("#submitBtn").click(function() {
-							$("#myform").hide();
+					$("#mainresponse").fadeIn();
 
-						});
-					});
+					 
 
 					if (data.success == "false") {
 
-						$("#warning").removeClass("d-none");
+					$("#mainresponse").hide();
+
+					 
+
+					$("#warning").removeClass("d-none");
+
 					} else {
 
+					 
+
 					}
+
 					console.log(data);
 
-					$('#response1').text(data.firstname);
-					$('#response2').text(data.email);
-					$('#response3').text(data.city);
-					$('#response4').text(data.userid);
+					 
 
-				}).fail(function(data) {
+					$('.c2').text(data.firstname);
+
+					$('.c3').text(data.email);
+
+					$('.c4').text(data.city);
+
+					$('.c1').text(data.serialno);
+
+					 
+
+				})
+				.fail(function(data) {
 					console.log(2);
 					console.log(data);
 					$('#response').text('Error: ' + data.responseJSON.message);
 				});
+					}
 			});
+			
 		});
 	</script>
 

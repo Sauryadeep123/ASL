@@ -17,7 +17,7 @@ public class SelectQuery {
 		int flag = 0;
 		try {
 
-			String sql = "select * from employee_list";
+			String sql = "select * from employees";
 			p = conn.prepareStatement(sql);
 			rs = p.executeQuery();
 			while (rs.next()) {
@@ -43,7 +43,7 @@ public class SelectQuery {
 		PreparedStatement p = null;
 		ResultSet rs = null;
 		try {
-			String sql = "select * from employee_details";
+			String sql = "select * from employees";
 			p = conn.prepareStatement(sql);
 
 			rs = p.executeQuery();
@@ -51,8 +51,8 @@ public class SelectQuery {
 				if (rs.getString("email").equals(email1)) {
 					e1.setFirstName(rs.getString("first_name"));
 					e1.setEmail(rs.getString("email"));
-					e1.setCity(rs.getString("city"));
-					e1.setUserid(rs.getString("userid"));
+//					e1.setCity(rs.getString("city"));
+					e1.setUserid(rs.getString("user_id"));
 					return e1;
 				}
 			}
