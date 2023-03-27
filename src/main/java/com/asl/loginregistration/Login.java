@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.asl.connector.Connector;
+import com.asl.dbentity.Employee;
 import com.asl.dbentity.EmployeeDetails;
 import com.asl.dboperations.SelectQuery;
 import com.google.gson.Gson;
@@ -59,16 +61,25 @@ public class Login extends HttpServlet {
 		String email1 = req.getParameter("email");
 		System.out.println(email1);
 		String password1 = req.getParameter("password");
-		Map<String, String> responseData = new HashMap<String, String>();
-		if (SelectQuery.isValidUser(email1, password1)) {
+		Map<Integer,Map<String,String>> responseData = new HashMap<>();
+		if ((new SelectQuery()).isValidUser(email1, password1)) {
+			System.out.println("user present!!!!!!!");
 			
-			EmployeeDetails e1 = SelectQuery.showEmployee(email1);
+			ArrayList<Employee> list=new SelectQuery().showEmployee();
+			int count=1;
+			for(int i=0;i<list.size();i++)
+			{
+				Map<String,String> map=new HashMap<>();
+				map.put("success", "true");
+				map.put("firstname",list.get(i).getFirstName());
+				map.put("email", list.get(i).getEmail());
+				map.put("serialno", list.get(i).getSerialNo()+"");
+				map.put("userid", list.get(i).getUserId());
+				responseData.put(count, map);
+				count++;
+			}
 			
-			responseData.put("success", "true");
-			responseData.put("firstname", e1.getFirstName());
-			responseData.put("email", e1.getEmail());
-			responseData.put("serialno", (e1.getSerialNo()+1)+"");
-			responseData.put("userid", e1.getUserid());
+			
 			
 			Gson gson = new Gson();
 			String json = gson.toJson(responseData);
@@ -77,7 +88,7 @@ public class Login extends HttpServlet {
 		
 
 		} else {
-			responseData.put("success", "false");
+		//	responseData.put("success", "false");
 			Gson gson = new Gson();
 			String json = gson.toJson(responseData);
 			out.print(json);

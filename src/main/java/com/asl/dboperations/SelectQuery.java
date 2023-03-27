@@ -4,13 +4,17 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
 import com.asl.connector.Connector;
+import com.asl.dbentity.Employee;
 import com.asl.dbentity.EmployeeDetails;
 
 public class SelectQuery {
-	static Connection conn = Connector.getConnection();
+	Connection conn = null;
 
-	public static boolean isValidUser(String email1, String password1) {
+	public  boolean isValidUser(String email1, String password1) {
+		conn = Connector.getConnection();
 
 		PreparedStatement p = null;
 		ResultSet rs = null;
@@ -37,30 +41,40 @@ public class SelectQuery {
 
 	}
 
-	public static EmployeeDetails showEmployee(String email1) {
-		EmployeeDetails e1 = new EmployeeDetails();
+	public  ArrayList<Employee> showEmployee() {
+		conn = Connector.getConnection();
+		
 
 		PreparedStatement p = null;
 		ResultSet rs = null;
 		try {
 			String sql = "select * from employees";
 			p = conn.prepareStatement(sql);
-
+            
 			rs = p.executeQuery();
+			if(rs!=null)
+			{
+				ArrayList<Employee> list=new ArrayList<>();
+			
 			while (rs.next()) {
-				if (rs.getString("email").equals(email1)) {
+				System.out.println("");
+				  Employee e1 = new Employee();
 					e1.setFirstName(rs.getString("first_name"));
 					e1.setEmail(rs.getString("email"));
-//					e1.setCity(rs.getString("city"));
-					e1.setUserid(rs.getString("user_id"));
-					return e1;
+                    e1.setSerialNo(rs.getInt("id"));
+					e1.setUserId(rs.getString("user_id"));
+					list.add(e1);
+					System.out.println(e1.getFirstName());
+				
 				}
+			return list;
 			}
+			
 
 		} catch (SQLException e) {
 			System.out.println("employee details exception");
 			e.printStackTrace();
 		}
-		return e1;
+		return null;
 	}
 }
