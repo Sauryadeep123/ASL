@@ -41,7 +41,7 @@ public class Connector {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");  
 //			 con=DriverManager.getConnection(url,username,password);
-			con=DriverManager.getConnection("jdbc:mysql://192.168.4.131:3306/asl","roy","sauryadeep");
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/asl", "roy", "sauryadeep");
 			
 			
 			

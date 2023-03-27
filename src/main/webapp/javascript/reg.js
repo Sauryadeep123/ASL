@@ -2,10 +2,6 @@
  * 
  */
 
- /**
- * 
- */
-
 
 function validate() {
 	let x = document.getElementById("firstName").value;
