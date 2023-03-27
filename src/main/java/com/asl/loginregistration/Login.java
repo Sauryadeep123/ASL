@@ -57,6 +57,7 @@ public class Login extends HttpServlet {
 		PrintWriter out=res.getWriter();
 
 		String email1 = req.getParameter("email");
+		System.out.println(email1);
 		String password1 = req.getParameter("password");
 		Map<String, String> responseData = new HashMap<String, String>();
 		if (SelectQuery.isValidUser(email1, password1)) {
@@ -66,7 +67,7 @@ public class Login extends HttpServlet {
 			responseData.put("success", "true");
 			responseData.put("firstname", e1.getFirstName());
 			responseData.put("email", e1.getEmail());
-			responseData.put("city", e1.getCity());
+			responseData.put("serialno", (e1.getSerialNo()+1)+"");
 			responseData.put("userid", e1.getUserid());
 			
 			Gson gson = new Gson();
