@@ -72,49 +72,32 @@
 									</div>
 								</div>
 							</form>
-							<div id="mainresponse" style="display:none">
+							<div id="mainresponse" style="display: none">
+								<div class="container">
+									<h1 class="text text-success text-center ">ASL
+						</h1>
+									<h6 class="text text-success text-center">List of
+										Employees</h6>
+									<table class="table-striped border-success">
+										<thead>
+											<tr>
+												<th data-field="serialNo"><span class="text-success">
+														Employee ID </span></th>
+												<th data-field="firstName"><span class="text-success">
+														Employee Name </span></th>
+												<th data-field="email"><span class="text-success">
+														Email </span></th>
+												<th data-field="userId"><span class="text-success">
+														UserId </span></th>
+											</tr>
+										</thead>
+									</table>
+								</div>
 
- 
 
-<table class="table">
+								 
 
-<thead class="thead-dark">
-
-<tr>
-
-<th scope="col">S.No</th>
-
-<th scope="col">Name</th>
-
-<th scope="col">Email</th>
-
-<th scope="col">UserId</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr id="r1">
-
-<th scope="row" class="c1">1</th>
-
-<td class="c2"></td>
-
-<td class="c3"></td>
-
-<td class="c4"></td>
-
-</tr>
-
- 
-
-</tbody>
-
-</table>
-
-</div>
+							</div>
 
 
 						</div>
@@ -126,81 +109,100 @@
 			</div>
 		</div>
 	</section>
-	<style>
-#showhideForm {
-	display: none;
-	width: 300px;
-	border: 1px solid #ccc;
-	padding: 14px;
-	background: #ececec;
-}
-</style>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js">
+		
+	</script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js">
+		
+	</script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js">
+		
+	</script>
 
+	<!-- Include the JavaScript file
+  for Bootstrap table -->
+	<script
+		src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js">
+		
+	</script>
 	<script>
-		$(document).ready(function() {
-			$('#submitBtn').click(function(event) {
-				event.preventDefault();
-				if(validate())
-					{
-				var formData = {
-					email : $('#email').val(),
-					password : $('#password').val()
-				};
+		$(document)
+				.ready(
+						function() {
+							$('#submitBtn')
+									.click(
+											function(event) {
+												event.preventDefault();
+												if (validate()) {
+													var formData = {
+														email : $('#email')
+																.val(),
+														password : $(
+																'#password')
+																.val()
+													};
 
-				$.ajax({
-					type : 'POST',
-					url : 'Login',
-					data : formData,
-					dataType : 'json',
-					encode : true
-				})
+													$
+															.ajax(
+																	{
+																		type : 'POST',
+																		url : 'Login',
+																		data : formData,
+																		dataType : 'json',
+																		encode : true
+																	})
 
-				.done(function(data) {
+															.done(
+																	function(
+																			data) {
 
-					$("#myform").hide();
+																		$(
+																				"#myform")
+																				.hide();
 
-					$("#mainresponse").fadeIn();
+																		$(
+																				"#mainresponse")
+																				.fadeIn();
 
-					 
+																		if (data.success == "false") {
 
-					if (data.success == "false") {
+																			$(
+																					"#mainresponse")
+																					.hide();
 
-					$("#mainresponse").hide();
+																			$(
+																					"#warning")
+																					.removeClass(
+																							"d-none");
 
-					 
+																		}
+																		$(
+																				'table')
+																				.bootstrapTable(
+																						{
+																							data : data
+																						});
 
-					$("#warning").removeClass("d-none");
+																	})
+															.fail(
+																	function(
+																			data) {
+																		console
+																				.log(2);
+																		console
+																				.log(data);
+																		$(
+																				'#response')
+																				.text(
+																						'Error: '
+																								+ data.responseJSON.message);
+																	});
+												}
+											});
 
-					} else {
-
-					 
-
-					}
-
-					console.log(data);
-
-					 
-
-					$('.c2').text(data.firstname);
-
-					$('.c3').text(data.email);
-
-					$('.c4').text(data.userid);
-
-					$('.c1').text(data.serialno);
-
-					 
-
-				})
-				.fail(function(data) {
-					console.log(2);
-					console.log(data);
-					$('#response').text('Error: ' + data.responseJSON.message);
-				});
-					}
-			});
-			
-		});
+						});
 	</script>
 
 
