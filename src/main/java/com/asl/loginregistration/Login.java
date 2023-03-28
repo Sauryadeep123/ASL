@@ -90,8 +90,10 @@ public class Login extends HttpServlet {
 
 		} else {
 		//	responseData.put("success", "false");
+			Map<String,String> map=new HashMap<>();
+			map.put("success", "false");
 			Gson gson = new Gson();
-			String json = gson.toJson(list);
+			String json = gson.toJson(map);
 			out.print(json);
 			System.out.println("user not present");
 		}

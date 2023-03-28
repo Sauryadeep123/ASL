@@ -44,7 +44,7 @@
 					<div class="card m-5" style="border-radius: 15px;">
 						<div class="card-body">
 							<div class="row align-items-center py-3 d-none" id="warning">
-								<h3 class="text-danger text-center" style="">Wrong user id
+								<h3 class="text-danger text-center" id="wrong" style="">Wrong user id
 									or password</h3>
 							</div>
 							<form action="Login" method="post" onsubmit="return validate()"
@@ -78,18 +78,22 @@
 						</h1>
 									<h6 class="text text-success text-center">List of
 										Employees</h6>
-									<table class="table-striped border-success">
+									<table class="table-striped border-success" id="table">
 										<thead>
 											<tr>
 												<th data-field="serialNo"><span class="text-success">
 														Employee ID </span></th>
+														
 												<th data-field="firstName"><span class="text-success">
 														Employee Name </span></th>
 												<th data-field="email"><span class="text-success">
 														Email </span></th>
 												<th data-field="userId"><span class="text-success">
 														UserId </span></th>
+												
+										     
 											</tr>
+												
 										</thead>
 									</table>
 								</div>
@@ -127,84 +131,137 @@
 		src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js">
 		
 	</script>
+	
 	<script>
-		$(document)
-				.ready(
-						function() {
-							$('#submitBtn')
-									.click(
-											function(event) {
-												event.preventDefault();
-												if (validate()) {
-													var formData = {
-														email : $('#email')
-																.val(),
-														password : $(
-																'#password')
-																.val()
-													};
+		$(document).ready(function() {
+                     $('#submitBtn').click(function(event) {
+							event.preventDefault();
+							if (validate()) {
+								var formData = {
+									email : $('#email')
+											.val(),
+									password : $(
+											'#password')
+											.val()
+								};
+								$
+								.ajax(
+										{
+											type : 'POST',
+											url : 'Login',
+											data : formData,
+											dataType : 'json',
+											encode : true
+										})
+										
+										.done(function(data) {
+											
+											if (data.success == "false") {
 
-													$
-															.ajax(
-																	{
-																		type : 'POST',
-																		url : 'Login',
-																		data : formData,
-																		dataType : 'json',
-																		encode : true
-																	})
+												$("#mainresponse").hide();
+												$("#warning").removeClass("d-none");
+											}
+											else{
+												
+											
+											
+											$('table').bootstrapTable(
 
-															.done(
-																	function(
-																			data) {
+													{
+														data : data
+														
+													});
+											$("#myform").hide();
+											$("#mainresponse").fadeIn();
+											$("#wrong").hide();
+											}
+											const table = document.getElementById("table");
+						                     const rows = table.rows;
+						                     
+						                     for (let i = 1; i < rows.length; i++) {
+						                       const editButton = document.createElement("button");
+						                       editButton.innerText = "update";
+						                       editButton.onclick = () => {
+						                         
+						                         console.log(document.getElementById("table").rows[i].cells[0]);
+						                       };
+						                       
+						                       const cell = rows[i].insertCell(-1);
+						                       cell.appendChild(editButton);
+						                     }
 
-																		$(
-																				"#myform")
-																				.hide();
-
-																		$(
-																				"#mainresponse")
-																				.fadeIn();
-
-																		if (data.success == "false") {
-
-																			$(
-																					"#mainresponse")
-																					.hide();
-
-																			$(
-																					"#warning")
-																					.removeClass(
-																							"d-none");
-
-																		}
-																		$(
-																				'table')
-																				.bootstrapTable(
-																						{
-																							data : data
-																						});
-
-																	})
-															.fail(
-																	function(
-																			data) {
-																		console
-																				.log(2);
-																		console
-																				.log(data);
-																		$(
-																				'#response')
-																				.text(
-																						'Error: '
-																								+ data.responseJSON.message);
-																	});
-												}
-											});
-
+										})
+										
+										.fail(
+												function(data)
+													 {
+													
+													console.log(2);
+													console.log(data);
+															
+													$('#response').text('Error: '+ data.responseJSON.message);
+															
+															
+																	
+																			
+												});
+							}
 						});
-	</script>
+		});
+
+	
+											
+                     </script>
+                     <script>
+                     const table = document.getElementById("table");
+                     const rows = table.rows;
+                     
+                     for (let i = 0; i < rows.length; i++) {
+                       const editButton = document.createElement("button");
+                       editButton.innerText = "Edit";
+                       editButton.onclick = () => {
+                         // handle edit button click
+                         console.log(`Editing row ${i}`);
+                       };
+                       
+                       const cell = rows[i].insertCell(-1);
+                       cell.appendChild(editButton);
+                     }
+                     
+                     </script>
 
 
-</body>
-</html>
+                </body>
+     </html>
+								
+														
+														
+																
+
+											
+											
+											
+											
+																			
+
+																		
+
+																		
+									
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
