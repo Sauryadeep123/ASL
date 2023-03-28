@@ -25,6 +25,8 @@
 	integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
 	crossorigin="anonymous"></script>
 <script src="javascript/reg.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
 
 </head>
 <body>
@@ -40,7 +42,7 @@
 					
 					<div class="card m-5" style="border-radius: 15px;">
 						<div class="card-body">
-							<form action="register" method="post"
+							<form action="register" method="post" id="form"
 								onsubmit="return validate()" enctype='multipart/form-data'>
 
 								<div class="row align-items-center pt-4 pb-3">
@@ -138,7 +140,7 @@
 								<hr class="mx-n3">
 								<div class="row align-items-center py-3 text-center">
 									<div class="px-4 py-4">
-										<input type="submit" class="btn btn-primary btn-lg"
+										<input type="submit" class="btn btn-primary btn-lg" id="submitBtn"
 											value="Register" />
 									</div>
 								</div>
