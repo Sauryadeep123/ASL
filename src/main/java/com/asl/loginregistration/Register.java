@@ -61,8 +61,14 @@ public class Register extends HttpServlet {
 		java.sql.Date sqlStartDate = new java.sql.Date(date.getTime());
 		emp.setDob(sqlStartDate);
 		emp.setPassword(req.getParameter("password"));
+		PrintWriter out = res.getWriter();
 		
 		if(new SelectQuery().alreadyUser(emp.getEmail())) {
+			RequestDispatcher rd=req.getRequestDispatcher("AlreadyUser.html");
+        	rd.include(req, res);
+        	RequestDispatcher rd2=req.getRequestDispatcher("index.html");
+        	rd2.include(req, res);
+			
 			
 		}
 		else {
@@ -80,14 +86,14 @@ public class Register extends HttpServlet {
 			new InsertQuery().insertIntoEmployees(emp);
 			new InsertQuery().insertIntoEmployeeDetails(emp,new SelectQuery().getId(emp.getEmail()));
 			
+			RequestDispatcher rd=req.getRequestDispatcher("RegistrationSuccess.html");
+        	rd.include(req, res);
+        	RequestDispatcher rd2=req.getRequestDispatcher("index.html");
+        	rd2.include(req, res);
+			
 		}
 		
-		PrintWriter out = res.getWriter();
 		
-					RequestDispatcher rd=req.getRequestDispatcher("RegistrationSuccess.html");
-		        	rd.include(req, res);
-		        	RequestDispatcher rd2=req.getRequestDispatcher("Login.html");
-		        	rd2.include(req, res);
 				
 	}
 
