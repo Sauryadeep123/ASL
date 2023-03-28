@@ -40,6 +40,32 @@ public class SelectQuery {
 		return false;
 
 	}
+	
+	public  boolean alreadyUser(String email1) {
+		conn = Connector.getConnection();
+
+		PreparedStatement p = null;
+		ResultSet rs = null;
+		try {
+
+			String sql = "select email from employees";
+			p = conn.prepareStatement(sql);
+			rs = p.executeQuery();
+			while (rs.next()) {
+				String email2 = rs.getString("email");
+				if (email1.equals(email2)) {
+
+					return true;
+				}
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return false;
+
+	}
 
 	public  ArrayList<Employee> showEmployee() {
 		conn = Connector.getConnection();
@@ -76,5 +102,32 @@ public class SelectQuery {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	public  String getId(String email1) {
+		conn = Connector.getConnection();
+
+		PreparedStatement p = null;
+		ResultSet rs = null;
+		int flag = 0;
+		try {
+
+			String sql = "select * from employees";
+			p = conn.prepareStatement(sql);
+			rs = p.executeQuery();
+			while (rs.next()) {
+				String email2 = rs.getString("email");
+				if (email1.equals(email2)) {
+
+					return rs.getString("id");
+				}
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "-1";
+
 	}
 }

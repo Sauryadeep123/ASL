@@ -52,8 +52,8 @@ public class EmployeeDetails
 	public void setCity(String city) {
 		this.city = city;
 	}
-	public java.sql.Date getDob() {
-		return dob;
+	public String getDob() {
+		return dob.toString();
 	}
 	public void setDob(java.sql.Date dob) {
 		this.dob = dob;

@@ -17,27 +17,10 @@ public class Connector {
 		String url="";
 		String username="";
 		String password="";
-		String fileName = "src/main/java/com/asl/resources/config.properties";
-		//try {
+		
 		Properties p=new Properties();
 		
-//		ClassLoader classLoader = getClass().getClassLoader();
-	//	InputStream in=new FileInputStream(fileName);
-//		InputStream in= classLoader.getResourceAsStream(fileName);
-//		if (in == null) {
-//            throw new IllegalArgumentException("file not found! " );
-//        } 
-	//	p.load(in);
-		//url=(String)p.getProperty("url");
-	//	username=(String)p.getProperty("username");
-	//	password=(String)p.getProperty("password");
-		
-//	    }
-		//catch(Exception e)
-	   // {
-	//	e.printStackTrace();
-		
-	 //   }
+
 		
 		TestClass ob= new TestClass();
 		try {
