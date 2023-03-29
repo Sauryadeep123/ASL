@@ -1,4 +1,4 @@
-package com.asl.loginregistration;
+package com.asl.registration;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
-import com.asl.dbentity.EmployeeDetails;
-import com.asl.dboperations.InsertQuery;
-import com.asl.dboperations.SelectQuery;
+import com.asl.db.entity.EmployeeDetails;
+import com.asl.db.operations.InsertQuery;
+import com.asl.db.operations.SelectQuery;
 import com.asl.filehandling.FileHandling;
 
 /**

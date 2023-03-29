@@ -1,11 +1,11 @@
-package com.asl.dboperations;
+package com.asl.db.operations;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import com.asl.connector.Connector;
-import com.asl.dbentity.EmployeeDetails;
+import com.asl.db.entity.EmployeeDetails;
 
 public class InsertQuery {
 	
