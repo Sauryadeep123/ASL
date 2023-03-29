@@ -42,7 +42,8 @@ public class Register extends HttpServlet {
 		emp.setPassword(req.getParameter("password"));
 		PrintWriter out = res.getWriter();
 		
-		if(new SelectQuery().alreadyUser(emp.getEmail())) {
+		SelectQuery sq=new SelectQuery();
+		if(sq.alreadyUser(emp.getEmail())) {
 			RequestDispatcher rd=req.getRequestDispatcher("AlreadyUser.html");
         	rd.include(req, res);
         	RequestDispatcher rd2=req.getRequestDispatcher("index.html");
@@ -55,16 +56,17 @@ public class Register extends HttpServlet {
 			Part partResume = req.getPart("resume");
 			String path = "/home/chirag/eclipse-workspace/ASL/";
 			try {
-				emp.setPhoto(new FileHandling().saveFile(path + "photos", partPhoto,emp.getEmail()));
-				emp.setResume(new FileHandling().saveFile(path + "resume", partResume,emp.getEmail()));
+				FileHandling fh=new FileHandling();
+				emp.setPhoto(fh.saveFile(path + "photos", partPhoto,emp.getEmail()));
+				emp.setResume(fh.saveFile(path + "resume", partResume,emp.getEmail()));
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			
-			
-			new InsertQuery().insertIntoEmployees(emp);
-			new InsertQuery().insertIntoEmployeeDetails(emp,new SelectQuery().getId(emp.getEmail()));
+			InsertQuery iq=new InsertQuery();
+			iq.insertIntoEmployees(emp);
+			iq.insertIntoEmployeeDetails(emp,new SelectQuery().getId(emp.getEmail()));
 			
 			RequestDispatcher rd=req.getRequestDispatcher("RegistrationSuccess.html");
         	rd.include(req, res);
