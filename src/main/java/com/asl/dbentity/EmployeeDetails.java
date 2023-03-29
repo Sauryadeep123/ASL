@@ -1,6 +1,8 @@
 package com.asl.dbentity;
 
-import java.sql.Date;
+//import java.util.Date;
+
+//import java.sql.Date;
 
 public class EmployeeDetails
 {
@@ -11,7 +13,7 @@ public class EmployeeDetails
 	private String lastName;
 	private String email;
 	private String city;
-	private java.sql.Date dob;
+	private String dob;
 	private String userid;
 	private String photo;
 	private String resume;
@@ -55,7 +57,7 @@ public class EmployeeDetails
 	public String getDob() {
 		return dob.toString();
 	}
-	public void setDob(java.sql.Date dob) {
+	public void setDob(String dob) {
 		this.dob = dob;
 	}
 	public String getUserid() {
@@ -83,7 +85,7 @@ public class EmployeeDetails
 		this.password = password;
 	}
 	public EmployeeDetails(int serialNo, String firstName, String middleName, String lastName, String email,
-			String city, Date dob, String userid, String photo, String resume, String password) {
+			String city, String dob, String userid, String photo, String resume, String password) {
 		super();
 		this.serialNo = serialNo;
 		this.firstName = firstName;

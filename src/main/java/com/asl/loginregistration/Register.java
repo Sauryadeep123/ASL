@@ -1,17 +1,7 @@
 package com.asl.loginregistration;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -22,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
-import com.asl.connector.Connector;
 import com.asl.dbentity.EmployeeDetails;
 import com.asl.dboperations.InsertQuery;
 import com.asl.dboperations.SelectQuery;
@@ -49,17 +38,7 @@ public class Register extends HttpServlet {
 		emp.setEmail(req.getParameter("email"));
 		emp.setPassword(req.getParameter("password"));
 		emp.setCity(req.getParameter("city"));
-		
-		SimpleDateFormat sdf1 = new SimpleDateFormat("dd-MM-yyyy");
-		java.util.Date date=null;
-		try {
-			date = sdf1.parse(req.getParameter("dob"));
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		java.sql.Date sqlStartDate = new java.sql.Date(date.getTime());
-		emp.setDob(sqlStartDate);
+		emp.setDob(req.getParameter("dob"));
 		emp.setPassword(req.getParameter("password"));
 		PrintWriter out = res.getWriter();
 		
@@ -82,6 +61,7 @@ public class Register extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
 			
 			new InsertQuery().insertIntoEmployees(emp);
 			new InsertQuery().insertIntoEmployeeDetails(emp,new SelectQuery().getId(emp.getEmail()));
