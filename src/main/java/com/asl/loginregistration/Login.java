@@ -61,11 +61,12 @@ public class Login extends HttpServlet {
 		String email1 = req.getParameter("email");
 		System.out.println(email1);
 		String password1 = req.getParameter("password");
+		SelectQuery obj=new SelectQuery();
 //		Map<Integer,Map<String,String>> responseData = new HashMap<>();
-		if ((new SelectQuery()).isValidUser(email1, password1)) {
+		if (obj.isValidUser(email1, password1)) {
 			System.out.println("user present!!!!!!!");
 			
-			list=new SelectQuery().showEmployee();
+			list=obj.showEmployee();
 //			Gson jsonarray[]=new Gson[list.size()];
 //			int count=0;
 //			for(int i=0;i<list.size();i++)
