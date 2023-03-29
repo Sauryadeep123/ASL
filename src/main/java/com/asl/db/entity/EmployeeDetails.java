@@ -1,4 +1,4 @@
-package com.asl.dbentity;
+package com.asl.db.entity;
 
 //import java.util.Date;
 

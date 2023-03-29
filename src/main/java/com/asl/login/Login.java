@@ -1,4 +1,4 @@
-package com.asl.loginregistration;
+package com.asl.login;
 
 
 import java.io.PrintWriter;
@@ -17,9 +17,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.asl.connector.Connector;
-import com.asl.dbentity.Employee;
-import com.asl.dbentity.EmployeeDetails;
-import com.asl.dboperations.SelectQuery;
+import com.asl.db.entity.Employee;
+import com.asl.db.entity.EmployeeDetails;
+import com.asl.db.operations.SelectQuery;
 import com.google.gson.Gson;
 
 
