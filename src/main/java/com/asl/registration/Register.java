@@ -3,7 +3,6 @@ package com.asl.registration;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -30,6 +29,7 @@ public class Register extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		System.out.print("aya re");
 		EmployeeDetails emp=new EmployeeDetails();
 		
 		emp.setFirstName(req.getParameter("firstName"));
@@ -44,10 +44,12 @@ public class Register extends HttpServlet {
 		
 		SelectQuery sq=new SelectQuery();
 		if(sq.alreadyUser(emp.getEmail())) {
-			RequestDispatcher rd=req.getRequestDispatcher("AlreadyUser.html");
-        	rd.include(req, res);
-        	RequestDispatcher rd2=req.getRequestDispatcher("index.html");
-        	rd2.include(req, res);
+//			RequestDispatcher rd=req.getRequestDispatcher("AlreadyUser.html");
+//        	rd.include(req, res);
+//        	RequestDispatcher rd2=req.getRequestDispatcher("index.html");
+//        	rd2.include(req, res);
+        	
+        	out.print("hello");
 			
 			
 		}
@@ -66,13 +68,7 @@ public class Register extends HttpServlet {
 			
 			InsertQuery iq=new InsertQuery();
 			iq.insertIntoEmployees(emp);
-			iq.insertIntoEmployeeDetails(emp,new SelectQuery().getId(emp.getEmail()));
-			
-			RequestDispatcher rd=req.getRequestDispatcher("RegistrationSuccess.html");
-        	rd.include(req, res);
-        	RequestDispatcher rd2=req.getRequestDispatcher("index.html");
-        	rd2.include(req, res);
-			
+			iq.insertIntoEmployeeDetails(emp,sq.getId(emp.getEmail()));
 		}
 		
 		

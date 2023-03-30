@@ -9,10 +9,13 @@
 	rel="stylesheet"
 	integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
 	crossorigin="anonymous">
+	<link rel='stylesheet'
+	href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css'>
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
 	crossorigin="anonymous">
+	
 </script>
 <script
 	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
@@ -24,18 +27,20 @@
 	crossorigin="anonymous"></script>
 <script src="javascript/reg.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="javascript/register.js"></script>
 <link rel="stylesheet" href="css/register.css">
 </head>
 <body id="body1">
-	<section class="vh-10" >
+	<section class="vh-10">
 		<div class="container h-10">
 			<div
 				class="row d-flex justify-content-center align-items-center h-100">
 				<div class="col-xl-8">
 					<div class="card m-5" id="DIV">
 						<div class="card-body">
-							<form action="register" method="post" id="form"
-								onsubmit="return validate()" enctype='multipart/form-data'>
+							<form method="post" id="form" enctype='multipart/form-data'>
 								<div class="row align-items-center pt-4 pb-3">
 
 									<div class="col-md-4 ps-1"">
@@ -71,15 +76,15 @@
 
 								</div>
 								<hr class="mx-n3">
-								
-								<div class="row align-items-center py-3">
-								<div class="mb-3">
+
+								<div class="row aligregistern-items-center py-3">
+									<div class="mb-3">
 										<label for="exampleFormControlInput1" class="form-label">
 											password:</label> <input type="password" class="form-control"
 											id="password" placeholder="enter password" name="password"
 											required>
 									</div>
-								
+
 								</div>
 
 								<hr class="mx-n3">
@@ -131,8 +136,8 @@
 								<hr class="mx-n3">
 								<div class="row align-items-center py-3 text-center">
 									<div class="px-4 py-4">
-										<input type="submit" class="btn btn-primary btn-lg" id="submitBtn"
-											value="Register" />
+										<input type="submit" class="btn btn-primary btn-lg"
+											id="submitBtn" value="Register" />
 									</div>
 								</div>
 							</form>
@@ -144,6 +149,51 @@
 			</div>
 		</div>
 	</section>
+	<!-- Modal -->
+	<div class="modal fade" id="success" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalCenterTitle"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+
+					<div class="thank-you-pop text-center">
+						<img
+							src="http://goactionstations.co.uk/wp-content/uploads/2017/03/Green-Round-Tick.png"
+							alt="">
+						<h1>Registrastion successful</h1>
+						<p>You can now login</p>
+					</div>
+				</div>
+				<div class="text-center pb-2">
+					<button type="button" class="btn btn-primary"
+						data-dismiss="modal" onclick="document.location='Login.html'" >Login</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal fade" id="alreadyUser" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalCenterTitle"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+
+					<div class="thank-you-pop text-center">
+						
+						<span id="boot-icon" class="bi bi-x" style="font-size: 200px; color: rgb(255, 0, 0); opacity: 0.8; -webkit-text-stroke-width: 3.5px;"></span>
+						<h1>You are already a user</h1>
+						<p>Please login</p>
+					</div>
+				</div>
+				<div class="text-center pb-2">
+					<button type="button" class="btn btn-primary"
+						data-dismiss="modal" onclick="document.location='Login.html'" >Login</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 </body>
 </html>
