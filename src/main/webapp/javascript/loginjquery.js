@@ -46,6 +46,8 @@
 							<td>${data[i].serialNo}</td>
 							<td>${data[i].firstName}</td>
 							<td>${data[i].email}</td>
+							<td><img src="photos/${data[i].photo}" alt="" style="width: 250px;"></td>
+							<td></td>
 						
 					  </tr>`
 			table.innerHTML += row
@@ -60,7 +62,7 @@
 											const table = document.getElementById("table");
 						                     const rows = table.rows;
 						                     
-						                     for (let i = 1; i < rows.length; i++) {
+						                     for (let i = 0; i < rows.length; i++) {
 						                       const editButton = document.createElement("div");
 						                       editButton.innerHTML = "<i class='bi bi-pen'></i>";
 						                       editButton.onclick = () => {
@@ -68,7 +70,7 @@
 						                         console.log(document.getElementById("table").rows[i].cells[0]);
 						                       };
 						                       
-						                       const cell = rows[i].insertCell(-1);
+						                       const cell = rows[i].insertCell(4);
 						                       cell.appendChild(editButton);
 						                     }
 
