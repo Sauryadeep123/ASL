@@ -24,7 +24,7 @@ public class Connector {
 		
 		TestClass ob= new TestClass();
 		try {
-			p.load(ob.getFileFromResourceAsStream("com/asl/resources/config.properties"));
+			p.load(ob.getFileFromResourceAsStream(Constant.propFilePath));
 			url=(String)p.getProperty("url");
 			username=(String)p.getProperty("username");
 			password=(String)p.getProperty("password");
