@@ -2,6 +2,7 @@ package com.asl.registration;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Properties;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -11,10 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import com.asl.connector.TestClass;
 import com.asl.db.entity.EmployeeDetails;
 import com.asl.db.operations.InsertQuery;
 import com.asl.db.operations.SelectQuery;
-import com.asl.filehandling.FileHandling;
+import com.asl.resources.Constant;
+import com.asl.utility.FileHandling;
 
 /**
  * Servlet implementation class Register
@@ -56,7 +59,10 @@ public class Register extends HttpServlet {
 		else {
 			Part partPhoto = req.getPart("photo");
 			Part partResume = req.getPart("resume");
-			String path = "/home/chirag/eclipse-workspace/ASL/";
+			Properties p=new Properties();
+			TestClass ob= new TestClass();
+			p.load(ob.getFileFromResourceAsStream(Constant.propFilePath));
+			String path=(String)p.getProperty("projectPath");
 			try {
 				FileHandling fh=new FileHandling();
 				emp.setPhoto(fh.saveFile(path + "photos", partPhoto,emp.getEmail()));
