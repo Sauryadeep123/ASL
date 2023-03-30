@@ -1,4 +1,4 @@
-$( '#form' )
+/*$( '#form' )
   .submit( function( e ) {
 	  e.preventDefault();
     $.ajax( {
@@ -13,82 +13,63 @@ $( '#form' )
 		 })
     
     
-  } );
+  } );*/
 
 
 
-/*$(document)
-	.ready(
-		function() {
-			$('#submitBtn')
-				.click(
-					function(event) {
-						event.preventDefault();
-						if (validate()) {
-							var formData = {
-								email: $('#email')
-									.val(),
-								password: $(
-									'#password')
-									.val()
-							};
+$(document).ready(function () {
+	console.log("before button click")
 
-							$
-								.ajax(
-									{
-										type: 'POST',
-										url: 'Login',
-										data: formData,
-										dataType: 'json',
-										encode: true
-									})
+    $("#submitBtn").click(function (event) {
+		console.log("after button click")
 
-								.done(
-									function(
-										data) {
+        //stop submit the form, we will post it manually.
+        event.preventDefault();
+        if(validate())
+        {
 
-										$(
-											"#myform")
-											.hide();
+        // Get form
+        var form = $('#form')[0];
 
-										$(
-											"#mainresponse")
-											.fadeIn();
+		// Create an FormData object 
+        var data = new FormData(form);
 
-										if (data.success == "false") {
+		// If you want to add an extra field for the FormData
+        //data.append("CustomField", "This is some extra data, testing");
 
-											$(
-												"#mainresponse")
-												.hide();
+		// disabled the submit button
+        //$("#btnSubmit").prop("disabled", true);
+        console.log("before ajax");
 
-											$(
-												"#warning")
-												.removeClass(
-													"d-none");
+        $.ajax({
+			
+            type: "POST",
+            enctype: 'multipart/form-data',
+            url: "register",
+            data: data,
+            processData: false,
+            contentType: false,
+            cache: false,
+            success: function (data) {
 
-										}
-										$(
-											'table')
-											.bootstrapTable(
-												{
-													data: data
-												});
+                $("#result").text(data);
+                console.log("SUCCESS : ", data);
+                if(data=="hello")
+                	$("#alreadyUser").modal('show');
+                else $("#success").modal('show');
+                $("#btnSubmit").prop("disabled", false);
 
-									})
-								.fail(
-									function(
-										data) {
-										console
-											.log(2);
-										console
-											.log(data);
-										$(
-											'#response')
-											.text(
-												'Error: '
-												+ data.responseJSON.message);
-									});
-						}
-					});
+            },
+            error: function (e) {
 
-		});*/
+                $("#result").text(e.responseText);
+                console.log("ERROR : ", e);
+                $("#btnSubmit").prop("disabled", false);
+
+            }
+        });
+        }
+
+    });
+
+});
