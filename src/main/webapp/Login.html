@@ -34,6 +34,7 @@
 <script src="javascript/login.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" href="css/login.css">
 </head>
 <body id="body2">
@@ -43,12 +44,12 @@
 				class="row d-flex justify-content-center align-items-center h-100">
 				<div class="col-xl-8">
 					<div class="card m-5" id="maindiv">
-						<div class="card-body">
+						<div class="card-body" id="form1">
 							<div class="row align-items-center py-3 d-none" id="warning">
 								<h3 class="text-danger text-center" id="wrong" style="">Wrong
 									user id or password</h3>
 							</div>
-							<form action="Login" method="post" onsubmit="return validate()"
+							<form  method="post" onsubmit="return validate()"
 								id="myform">
 								<div class="row align-items-center py-3">
 
@@ -75,28 +76,30 @@
 							</form>
 							<div id="mainresponse" style="display: none">
 								<div class="container">
-									<h1 class="text text-success text-center ">ASL</h1>
+									  <h1 class="text text-success text-center ">ASL</h1>
 									<h6 class="text text-success text-center">List of
-										Employees</h6>
-									<table class="table-striped border-success" id="table">
-										<thead>
-											<tr>
-												<th data-field="serialNo"><span class="text-success">
-														Employee ID </span></th>
-
-												<th data-field="firstName"><span class="text-success">
-														Employee Name </span></th>
-												<th data-field="email"><span class="text-success">
-														Email </span></th>
-												<th data-field="userId"><span class="text-success">
-														UserId </span></th>
+										Employees asl</h6>
+									<style>
+    th{ 
+        color:#fff;
+            }
+</style>
 
 
-											</tr>
+  <table class="table table-striped">
+      <tr  class="bg-info">
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Image</th>/th>
+        <th>Edit</th>/th>
+      </tr>
 
-										</thead>
-									</table>
-								</div>
+       <tbody id="table">
+        
+      </tbody>
+    </table>
+</div>
 
 
 								 
@@ -138,33 +141,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

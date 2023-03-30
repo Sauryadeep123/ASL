@@ -34,12 +34,25 @@
 												
 											
 											
-											$('table').bootstrapTable(
+											buildTable(data)
 
-													{
-														data : data
-														
-													});
+
+
+	function buildTable(data){
+		var table = document.getElementById('table')
+
+		for (var i = 0; i < data.length; i++){
+			var row = `<tr>
+							<td>${data[i].serialNo}</td>
+							<td>${data[i].firstName}</td>
+							<td>${data[i].email}</td>
+						
+					  </tr>`
+			table.innerHTML += row
+
+
+		}
+	}
 											$("#myform").hide();
 											$("#mainresponse").fadeIn();
 											$("#wrong").hide();
@@ -77,4 +90,3 @@
 							}
 						});
 		});
-

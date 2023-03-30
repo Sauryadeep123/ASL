@@ -1,5 +1,5 @@
 package com.asl.connector;
-
+import com.asl.resources.*;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -34,7 +34,7 @@ public class Connector {
 		}
 			
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");  
+			Class.forName(Constant.jdbc);  
 			 con=DriverManager.getConnection(url,username,password);
 			 System.out.println("connection created");
 //			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/asl", "asl", "fruit1");

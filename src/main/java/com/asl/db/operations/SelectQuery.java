@@ -67,36 +67,45 @@ public class SelectQuery {
 
 	}
 
-	public  ArrayList<Employee> showEmployee() {
+	public  ArrayList<EmployeeDetails> showEmployee() {
 		conn = Connector.getConnection();
 		
 
-		PreparedStatement p = null;
-		ResultSet rs = null;
+		PreparedStatement p1 = null;
+		ResultSet rs1 = null;
+		
 		try {
-			String sql = "select * from employees";
-			p = conn.prepareStatement(sql);
-            
-			rs = p.executeQuery();
-			if(rs!=null)
+			String sql1 = "select * from employees";
+			
+			p1 = conn.prepareStatement(sql1);
+			rs1 = p1.executeQuery();
+			
+			if(rs1!=null)
 			{
-				ArrayList<Employee> list=new ArrayList<>();
-			
-			while (rs.next()) {
-				System.out.println("");
-				  Employee e1 = new Employee();
-					e1.setFirstName(rs.getString("first_name"));
-					e1.setEmail(rs.getString("email"));
-                    e1.setSerialNo(rs.getInt("id"));
-					e1.setUserId(rs.getString("user_id"));
-					list.add(e1);
-					System.out.println(e1.getFirstName());
+				ArrayList<EmployeeDetails> list=new ArrayList<>();
 				
-				}
-			return list;
-			}
+			while (rs1.next()) {
+				System.out.println("");
+				EmployeeDetails e1 = new EmployeeDetails();
+				
+					e1.setFirstName(rs1.getString("first_name"));
+					e1.setEmail(rs1.getString("email"));
+                    e1.setSerialNo(rs1.getInt("id"));
+                   String image=getImage(e1.getSerialNo());
+                   e1.setPhoto(image);
+                   System.out.println(e1.getFirstName()+" "+e1.getEmail()+" "+e1.getPhoto()+" "+e1.getSerialNo());
+                   list.add(e1);
+        				
+        			}
 			
-
+			return list;
+				}
+			
+			
+				
+				
+			
+				
 		} catch (SQLException e) {
 			System.out.println("employee details exception");
 			e.printStackTrace();
@@ -104,6 +113,33 @@ public class SelectQuery {
 		return null;
 	}
 	
+	public  String getImage(int id1) {
+		conn = Connector.getConnection();
+		System.out.println("id "+id1);
+
+		PreparedStatement p = null;
+		ResultSet rs = null;
+		int flag = 0;
+		try {
+
+			String sql = "select * from employee_details";
+			p = conn.prepareStatement(sql);
+			rs = p.executeQuery();
+			while (rs.next()) {
+				int id2=rs.getInt("id");
+				if (id1==id2) {
+
+					return rs.getString("photo");
+				}
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "-1";
+
+	}
 	public  String getId(String email1) {
 		conn = Connector.getConnection();
 

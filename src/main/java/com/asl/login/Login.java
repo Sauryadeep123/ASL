@@ -57,32 +57,16 @@ public class Login extends HttpServlet {
 
 		System.out.println("loginnnnnnnnnnnn!!!!!!!");
 		PrintWriter out=res.getWriter();
-		ArrayList<Employee> list= null;
+		ArrayList<EmployeeDetails> list= null;
 		String email1 = req.getParameter("email");
 		System.out.println(email1);
 		String password1 = req.getParameter("password");
 		SelectQuery obj=new SelectQuery();
-//		Map<Integer,Map<String,String>> responseData = new HashMap<>();
 		if (obj.isValidUser(email1, password1)) {
 			System.out.println("user present!!!!!!!");
 			
 			list=obj.showEmployee();
-//			Gson jsonarray[]=new Gson[list.size()];
-//			int count=0;
-//			for(int i=0;i<list.size();i++)
-//			{
-//				Map<String,String> map=new HashMap<>();
-//				map.put("success", "true");
-//				map.put("firstname",list.get(i).getFirstName());
-//				map.put("email", list.get(i).getEmail());
-//				map.put("serialno", list.get(i).getSerialNo()+"");
-//				map.put("userid", list.get(i).getUserId());
-//				responseData.put(count, map);
-//				count++;
-//			}
-			
-			
-			
+
 			Gson gson = new Gson();
 			String json = gson.toJson(list);
 			System.out.println(json);
