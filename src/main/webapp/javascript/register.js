@@ -93,7 +93,7 @@ $(document).ready(function() {
 
 					for (let i = 0; i < rows.length; i++) {
 						const editButton = document.createElement("div");
-						editButton.innerHTML = "<i class='bi bi-pen'></i>";
+						editButton.innerHTML = "<i class='bi bi-eye'></i>";
 						editButton.onclick = () => {
 
 							console.log(document.getElementById("table").rows[i].cells[0]);
