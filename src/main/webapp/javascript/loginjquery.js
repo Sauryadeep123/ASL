@@ -44,7 +44,7 @@
 		for (var i = 0; i < data.length; i++){
 			var row = `<tr>
 							<td>${data[i].serialNo}</td>
-							<td><span class="truncate">${data[i].firstName}</span></td>
+							<td><span class="truncate">${data[i].firstName}<span class="tooltiptext">${data[i].firstName}</span></span></td>
 							<td>${data[i].email}</td>
 							<td><img src="photos/${data[i].photo}" alt="" style="width: 150px;"></td>
 							<td></td>
