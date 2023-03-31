@@ -8,6 +8,11 @@ function validate() {
 		alert("Enter valid email id");
 		return false;
 	}
+	x = document.getElementById("password").value;
+	if (x=="") {
+		alert("Please enter your pasword")
+		return false;
+	}
 	
 	return true;
 }

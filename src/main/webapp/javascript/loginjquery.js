@@ -32,8 +32,8 @@
 											}
 											else{
 												
-											
-											
+											$("#card").removeClass("col-xl-6");
+											$("#card").addClass("col-xl-15");
 											buildTable(data)
 
 
@@ -44,9 +44,9 @@
 		for (var i = 0; i < data.length; i++){
 			var row = `<tr>
 							<td>${data[i].serialNo}</td>
-							<td>${data[i].firstName}</td>
+							<td><span class="truncate">${data[i].firstName}</span></td>
 							<td>${data[i].email}</td>
-							<td><img src="photos/${data[i].photo}" alt="" style="width: 250px;"></td>
+							<td><img src="photos/${data[i].photo}" alt="" style="width: 150px;"></td>
 							<td></td>
 						
 					  </tr>`
