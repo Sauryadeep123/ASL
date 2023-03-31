@@ -12,9 +12,11 @@ import java.util.Map;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.asl.connector.Connector;
 import com.asl.db.entity.Employee;
@@ -61,6 +63,15 @@ public class Login extends HttpServlet {
 		String email1 = req.getParameter("email");
 		System.out.println(email1);
 		String password1 = req.getParameter("password");
+		try {
+		 HttpSession session=req.getSession(false);  
+		 if(session!=null) {
+	        email1=(String)session.getAttribute("email");
+	        password1=(String)session.getAttribute("password");
+		 }
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		SelectQuery obj=new SelectQuery();
 		if (obj.isValidUser(email1, password1)) {
 			System.out.println("user present!!!!!!!");
@@ -71,6 +82,19 @@ public class Login extends HttpServlet {
 			String json = gson.toJson(list);
 			System.out.println(json);
 			out.print(json);
+			try {
+				 HttpSession session=req.getSession(false);
+			if(session.getAttribute("succes")=="false")
+			{
+			   Cookie ck=new Cookie("insert","false"); 
+			   res.addCookie(ck);
+			}else {
+				Cookie ck=new Cookie("insert",email1); 
+				res.addCookie(ck);
+			}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
 		
 
 		} else {

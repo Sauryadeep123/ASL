@@ -37,10 +37,10 @@
 		<div class="container h-10">
 			<div
 				class="row d-flex justify-content-center align-items-center h-100">
-				<div class="col-xl-8">
+				<div class="col-xl-8" id="card">
 					<div class="card m-5" id="DIV">
 						<div class="card-body">
-							<form method="post" id="form" enctype='multipart/form-data'>
+							<form method="post" id="myform" enctype='multipart/form-data'>
 								<div class="row align-items-center pt-4 pb-3">
 
 									<div class="col-md-4 ps-1"">
@@ -141,6 +141,39 @@
 									</div>
 								</div>
 							</form>
+							
+							<div id="mainresponse" >
+								<div class="container">
+									  <h1 class="text text-success text-center ">ASL</h1>
+									<h6 class="text text-success text-center">List of
+										Employees asl</h6>
+										<h6 class="text text-center" id="successMessage"></h6>
+									<style>
+    th{ 
+        color:#fff;
+            }
+</style>
+
+
+  <table class="table table-striped">
+      <tr  class="bg-info">
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Image</th>
+        <th>Edit</th>
+      </tr>
+
+       <tbody id="table">
+        
+      </tbody>
+    </table>
+</div>
+
+
+								 
+
+							</div>
 
 						</div>
 					</div>
