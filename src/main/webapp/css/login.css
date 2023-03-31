@@ -33,10 +33,22 @@
   display: inline-block;
   max-Width:32ch;
   }
-  .truncate:hover {
-  max-Width:none;
-  white-space:normal;
-  }
+  .truncate:hover .tooltiptext {
+  visibility: visible;
+}
+  .truncate .tooltiptext {
+  visibility: hidden;
+  
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
 
  
   
