@@ -137,7 +137,7 @@ function buildTable(data) {
 								var row = `<tr>
 							<td>${data[i].serialNo}</td>
 							<td><span class="truncate">${data[i].firstName}<span class="tooltiptext">${data[i].firstName}</span></span></td>
-							<td>${data[i].email}</td>
+						<td><span class="truncate">${data[i].email}<span class="tooltiptext">${data[i].email}</span></span></td>
 							<td><img src="photo/${data[i].photo}" alt="" style="width:50px;height:50px"></td>
 							<td></td>
 						
