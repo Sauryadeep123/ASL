@@ -105,7 +105,7 @@ $(document).ready(function() {
 						editButton.innerHTML = "<i class='bi bi-eye'></i>";
 						editButton.onclick = () => {
 
-							console.log(document.getElementById("table").rows[i].cells[0]);
+							console.log(document.getElementById("table").rows[i].cells[0].innerText);
 						};
 
 						const cell = rows[i].insertCell(4);
