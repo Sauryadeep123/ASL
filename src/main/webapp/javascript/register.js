@@ -46,7 +46,7 @@ $(document).ready(function() {
 				enctype: 'multipart/form-data',
 				url: "register",
 				data: data,
-				dataType : 'json',
+				dataType: 'json',
 				processData: false,
 				contentType: false,
 				cache: false,
@@ -54,7 +54,7 @@ $(document).ready(function() {
 
 					$("#result").text(data);
 					console.log("SUCCESS : ", data);
-					if (data.success == "alreadyuser"){
+					if (data.success == "alreadyuser") {
 						$("#alreadyUser").modal('show');
 					}
 					else {
@@ -62,6 +62,15 @@ $(document).ready(function() {
 						$("#card").removeClass("col-xl-8");
 						$("#card").addClass("col-xl-12");
 						console.log(document.cookie);
+						if(getCookie("insert")=="false"){
+							 $("#successMessage").text("Some problem occured");
+							 $("#successMessage").addClass("text-danger");
+						}
+						else{
+							$("#successMessage").text("User Successfully Registered");
+							 $("#successMessage").addClass("text-success");
+						}
+						
 						buildTable(data)
 
 
@@ -117,3 +126,14 @@ $(document).ready(function() {
 	});
 
 });
+
+function getCookie(name) {
+	var cookies = document.cookie.split(';');
+	for (var i = 0; i < cookies.length; i++) {
+		var cookie = cookies[i].trim();
+		if (cookie.indexOf(name + '=') === 0) {
+			return cookie.substring(name.length + 1, cookie.length);
+		}
+	}
+	return null;
+}
