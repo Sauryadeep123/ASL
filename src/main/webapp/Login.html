@@ -34,7 +34,10 @@
 <script src="javascript/login.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
 <link rel="stylesheet" href="css/login.css">
 </head>
 <body id="body2">
@@ -49,8 +52,7 @@
 								<h3 class="text-danger text-center" id="wrong" style="">Wrong
 									user id or password</h3>
 							</div>
-							<form  method="post" onsubmit="return validate()"
-								id="myform">
+							<form method="post" onsubmit="return validate()" id="myform">
 								<div class="row align-items-center py-3">
 
 									<div class="mb-3">
@@ -74,31 +76,113 @@
 									</div>
 								</div>
 							</form>
-							<div id="mainresponse" >
+							<div id="mainresponse">
 								<div class="container">
-									  <h1 class="text text-success text-center ">ASL</h1>
+									<h1 class="text text-success text-center ">ASL</h1>
 									<h6 class="text text-success text-center">List of
 										Employees asl</h6>
-	
-
-  <table class="table table-striped">
-      <tr  class="bg-info">
-        <th>ID</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Image</th>
-        <th>View</th>
-      </tr>
-
-       <tbody id="table">
-        
-      </tbody>
-    </table>
-</div>
 
 
-								 
+									<table class="table table-striped">
+										<tr class="bg-info">
+											<th>ID</th>
+											<th>Name</th>
+											<th>Email</th>
+											<th>Image</th>
+											<th>View</th>
+										</tr>
 
+										<tbody id="table">
+
+										</tbody>
+									</table>
+								</div>
+
+							</div>
+
+							<div class="modal fade" id="exampleModal" tabindex="-1"
+								aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalLabel">User
+												Details</h5>
+											<button type="button" class="btn-close"
+												data-bs-dismiss="modal" aria-label="Close"></button>
+										</div>
+										<div class="modal-body">
+											<form method="post" id="myform" enctype='multipart/form-data'>
+												<div class="row align-items-center pt-4 pb-3">
+
+													<div class="col-md-4 ps-1"">
+														<label for="exampleFormControlInput1" class="form-label">First
+															Name: </label> <input type="text" class="form-control"
+															id="firstName" name="firstName" required readonly>
+													</div>
+
+													<div class="col-md-4 ps-1"">
+														<label for="exampleFormControlInput1" class="form-label">Middle
+															Name: </label> <input type="text" class="form-control"
+															id="exampleFormControlInput1" name="middleName" readonly>
+													</div>
+
+													<div class="col-md-4 ps-1"">
+														<label for="exampleFormControlInput1" class="form-label">Last
+															Name: </label> <input type="text" class="form-control"
+															id="lastName" name="lastName" required readonly>
+													</div>
+
+												</div>
+
+												<hr class="mx-n3">
+
+												<div class="row align-items-center py-3">
+
+													<div class="mb-3">
+														<label for="exampleFormControlInput1" class="form-label">Email
+															address:</label> <input type="email" class="form-control"
+															id="email" placeholder="name@example.com" name="email"
+															required readonly>
+													</div>
+
+
+												</div>
+												<hr class="mx-n3">
+
+												<div class="row aligregistern-items-center py-3">
+													<div class="mb-3">
+														<label for="exampleFormControlInput1" class="form-label">
+															Password:</label> <input type="password" class="form-control"
+															id="password" placeholder="enter password"
+															name="password" required readonly>
+													</div>
+
+												</div>
+
+												<hr class="mx-n3">
+
+												<div class="row align-items-center py-3">
+													<div class="mb-3 col-md-5">
+														<label for="exampleFormControlInput1" class="form-label">
+															Date of birth: </label> <input type="date" class="form-control"
+															id="dob" name="dob" required readonly>
+													</div>
+													<div class="mb-3 col-md-7">
+														<label for="exampleFormControlInput1" class="form-label">
+															City: </label> <input type="text" class="form-control" id="city"
+															name="city" required readonly>
+													</div>
+												</div>
+											</form>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary"
+												data-bs-dismiss="modal">Close</button>
+											<button type="button" class="btn btn-primary">Send
+												message</button>
+										</div>
+									</div>
+								</div>
 							</div>
 
 
