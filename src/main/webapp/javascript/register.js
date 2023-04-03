@@ -62,15 +62,15 @@ $(document).ready(function() {
 						$("#card").removeClass("col-xl-8");
 						$("#card").addClass("col-xl-12");
 						console.log(document.cookie);
-						if(getCookie("insert")=="false"){
-							 $("#successMessage").text("Some problem occured");
-							 $("#successMessage").addClass("text-danger");
+						if (getCookie("insert") == "false") {
+							$("#successMessage").text("Some problem occured");
+							$("#successMessage").addClass("text-danger");
 						}
-						else{
-							$("#successMessage").text(data[data.length-1].email+" Successfully Registered");
-							 $("#successMessage").addClass("text-success");
+						else {
+							$("#successMessage").text(data[data.length - 1].email + " Successfully Registered");
+							$("#successMessage").addClass("text-success");
 						}
-						
+
 						buildTable(data)
 
 
@@ -111,6 +111,26 @@ $(document).ready(function() {
 						const cell = rows[i].insertCell(4);
 						cell.appendChild(editButton);
 					}
+					//highlight recent add rows
+
+
+					// Add the class to highlight the row
+					console.log("highlight");
+					 // Get the table rows
+      var rowss = document.getElementsByTagName('tr');
+      
+      // Set the row number to highlight
+      var rowNumber = 2;
+      
+      // Get the row to highlight
+      var rowToHighlight = rowss[rowNumber];
+      
+      // Add the class to highlight the row
+      rowToHighlight.classList.add('highlighted');
+					// Remove the class after 30 seconds
+					setTimeout(function() {
+						rowToHighlight.classList.remove('highlighted');
+					}, 30000);
 
 				},
 				error: function(e) {
