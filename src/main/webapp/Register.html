@@ -274,19 +274,22 @@
 		aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
 				<div class="modal-body">
 
 					<div class="thank-you-pop text-center">
 
 						<span id="boot-icon" class="bi bi-x"
 							style="font-size: 200px; color: rgb(255, 0, 0); opacity: 0.8; -webkit-text-stroke-width: 3.5px;"></span>
-						<h1>You are already a user</h1>
-						<p>Please login</p>
+						<h1>This is already a user</h1>
 					</div>
 				</div>
-				<div class="text-center pb-2">
-					<button type="button" class="btn btn-primary" data-dismiss="modal"
-						onclick="document.location='Login.html'">Login</button>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary"
+						data-bs-dismiss="modal">Okay</button>
 				</div>
 			</div>
 		</div>
