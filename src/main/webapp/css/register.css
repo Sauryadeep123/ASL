@@ -34,4 +34,10 @@ border-radius: 15px;
   position: absolute;
   z-index: 1;
 }
+
+      /* Style for the highlighted row */
+      .highlighted {
+        background-color: yellow;
+      }
+  
   

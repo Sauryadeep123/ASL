@@ -120,7 +120,7 @@ $(document).ready(function() {
       var rowss = document.getElementsByTagName('tr');
       
       // Set the row number to highlight
-      var rowNumber = 2;
+      var rowNumber = data.length;
       
       // Get the row to highlight
       var rowToHighlight = rowss[rowNumber];
