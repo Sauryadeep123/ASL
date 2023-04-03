@@ -62,18 +62,18 @@ public class Login extends HttpServlet {
 		ArrayList<EmployeeDetails> list= null;
 		String email1 = req.getParameter("email");
 		System.out.println(email1);
-		String password1 = req.getParameter("password");
+		//String password1 = req.getParameter("password");
 		try {
 		 HttpSession session=req.getSession(false);  
 		 if(session!=null) {
 	        email1=(String)session.getAttribute("email");
-	        password1=(String)session.getAttribute("password");
+	       // password1=(String)session.getAttribute("password");
 		 }
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 		SelectQuery obj=new SelectQuery();
-		if (obj.isValidUser(email1, password1)) {
+		if (obj.isValidUser(email1)) {
 			System.out.println("user present!!!!!!!");
 			
 			list=obj.showEmployee();

@@ -14,7 +14,7 @@ import java.util.*
 ;public class SelectQuery {
 	Connection conn = null;
 
-	public  boolean isValidUser(String email1, String password1) {
+	public  boolean isValidUser(String email1) {
 		conn = Connector.getConnection();
 
 		PreparedStatement p = null;
@@ -27,8 +27,8 @@ import java.util.*
 			rs = p.executeQuery();
 			while (rs.next()) {
 				String email2 = rs.getString("email");
-				String password2 = rs.getString("password");
-				if (email1.equals(email2) && password1.equals(password2)) {
+			//	String password2 = rs.getString("password");
+				if (email1.equals(email2) ) {
 
 					return true;
 				}
@@ -147,6 +147,7 @@ import java.util.*
 					map.put("resume", rs.getString("resume"));
 				}
 			}
+			System.out.println("map "+map);
 			return map;
 
 		} catch (Exception e) {
