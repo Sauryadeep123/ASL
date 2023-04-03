@@ -9,23 +9,25 @@ import javax.servlet.http.Part;
 
 public class FileHandling {
 	
-	private String getFileName(final Part part,String email) {
-		final String partHeader = part.getHeader("content-disposition");
-		for (String content : partHeader.split(";")) {
-			if (content.trim().startsWith("filename")) {
-				return email+content.substring(content.indexOf('=') + 1).trim().replace("\"", "");
-			}
-		}
-		return null;
+	private String getFileName(final Part part,String id) {
+		String pc=part.getContentType();
+		return id+"."+pc.substring(pc.indexOf('/')+1);
+//		final String partHeader = part.getHeader("content-disposition");
+//		for (String content : partHeader.split(";")) {
+//			if (content.trim().startsWith("filename")) {
+//				return email+content.substring(content.indexOf('=') + 1).trim().replace("\"", "");
+//			}
+//		}
+//		return null;
 	}
 
-	public String saveFile(String uploadPath, Part part,String email) throws Exception {
+	public String saveFile(String uploadPath, Part part,String id) throws Exception {
 		File uploadDir = new File(uploadPath);
 		if (!uploadDir.exists()) {
 			uploadDir.mkdir();
 		}
 
-		String fileName = getFileName(part,email);
+		String fileName = getFileName(part,id);
 		OutputStream out1 = new FileOutputStream(new File(uploadPath + File.separator + fileName));
 		InputStream fileContent = part.getInputStream();
 		int read = 0;
@@ -36,8 +38,9 @@ public class FileHandling {
 		out1.flush();
 		out1.close();
 		fileContent.close();
+		System.out.print("the file name is" +fileName);
 
-		return getFileName(part,email);
+		return fileName;
 	}
 
 }

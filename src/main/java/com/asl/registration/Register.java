@@ -50,6 +50,10 @@ public class Register extends HttpServlet {
 		emp.setPassword("default");
 		PrintWriter out = res.getWriter();
 		
+//		Part part = req.getPart("photo");
+//		System.out.println(part.getContentType().substring(part.getContentType().indexOf('/')+1));
+//		System.out.println(req.getPart("resume").getContentType());
+		
 		SelectQuery sq=new SelectQuery();
 		if(sq.alreadyUser(emp.getEmail())) {
 //			RequestDispatcher rd=req.getRequestDispatcher("AlreadyUser.html");
@@ -67,26 +71,30 @@ public class Register extends HttpServlet {
 			
 		}
 		else {
-			Part partPhoto = req.getPart("photo");
-			Part partResume = req.getPart("resume");
-			Properties p=new Properties();
-			TestClass ob= new TestClass();
-			p.load(ob.getFileFromResourceAsStream(Constant.propFilePath));
-			String path=(String)p.getProperty("projectPath");
-			try {
-				FileHandling fh=new FileHandling();
-				emp.setPhoto(fh.saveFile(path + "photo", partPhoto,emp.getEmail()));
-				emp.setResume(fh.saveFile(path + "resume", partResume,emp.getEmail()));
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+//			Part partPhoto = req.getPart("photo");
+//			Part partResume = req.getPart("resume");
+//			Properties p=new Properties();
+//			TestClass ob= new TestClass();
+//			p.load(ob.getFileFromResourceAsStream(Constant.propFilePath));
+//			String path=(String)p.getProperty("projectPath");
+//			try {
+//				FileHandling fh=new FileHandling();
+//				emp.setPhoto(fh.saveFile(path + "photo", partPhoto,emp.getEmail()));
+//				emp.setResume(fh.saveFile(path + "resume", partResume,emp.getEmail()));
+//			} catch (Exception e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 			System.out.print("helooooooooooi "+ req.getParameter("email"));
-//			parseFilePart("photo",req, emp);
-//			parseFilePart("resume",req, emp);
+			
 			
 			InsertQuery iq=new InsertQuery();
 			int a=iq.insertIntoEmployees(emp);
+			
+			String id=sq.getId(emp.getEmail());
+			
+			parseFilePart("photo",req, emp,id);
+			parseFilePart("resume",req,emp, id);
 			int b=iq.insertIntoEmployeeDetails(emp,sq.getId(emp.getEmail()));
 			HttpSession session=req.getSession();
 			if(a==0 || b==0)
@@ -106,23 +114,26 @@ public class Register extends HttpServlet {
 				
 	}
 	
-//	private void parseFilePart(String reqParam,HttpServletRequest req,EmployeeDetails emp) throws IOException, ServletException {
-//		System.out.print("heloooooooooo "+ req.getParameter("email"));
-//		Part partPhoto = req.getPart(reqParam);
-//		
-//		Properties p=new Properties();
-//		TestClass ob= new TestClass();
-//		p.load(ob.getFileFromResourceAsStream(Constant.propFilePath));
-//		String path=(String)p.getProperty("projectPath");
-//		try {
-//			FileHandling fh=new FileHandling();
-//			emp.setPhoto(fh.saveFile(path + reqParam, partPhoto,emp.getEmail()));
-//			
-//			//emp.setResume(fh.saveFile(path + "resume", partResume,emp.getEmail()));
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//	}
+	private void parseFilePart(String reqParam,HttpServletRequest req,EmployeeDetails emp,String id) throws IOException, ServletException {
+		System.out.print("heloooooooooo "+ req.getParameter("email"));
+		Part part = req.getPart(reqParam);
+		
+		Properties p=new Properties();
+		TestClass ob= new TestClass();
+		p.load(ob.getFileFromResourceAsStream(Constant.propFilePath));
+		String path=(String)p.getProperty("projectPath");
+		try {
+			FileHandling fh=new FileHandling();
+			if(reqParam=="photo")
+			emp.setPhoto(fh.saveFile(path + reqParam, part,id));
+			if(reqParam=="resume")
+				emp.setResume(fh.saveFile(path + reqParam, part,id));
+			
+			//emp.setResume(fh.saveFile(path + "resume", partResume,emp.getEmail()));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 }
