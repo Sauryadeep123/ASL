@@ -24,6 +24,7 @@
 										})
 										
 										.done(function(data) {
+											console.log(data);
 											
 											if (data.success == "false") {
 
@@ -40,6 +41,7 @@
 
 	function buildTable(data){
 		var table = document.getElementById('table')
+		console.log(data);
 
 		for (var i = 0; i < data.length; i++){
 			var row = `<tr>
