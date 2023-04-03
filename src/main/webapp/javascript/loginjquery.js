@@ -68,8 +68,9 @@
 						                       const editButton = document.createElement("div");
 						                       editButton.innerHTML = "<i class='bi bi-eye'></i>";
 						                       editButton.onclick = () => {
+												  //modal.style.display = "block";
 						                         
-						                         console.log(document.getElementById("table").rows[i].cells[0].innerHtml);
+						                         console.log(document.getElementById("table").rows[i].cells[0].innerText);
 						                       };
 						                       
 						                       const cell = rows[i].insertCell(4);

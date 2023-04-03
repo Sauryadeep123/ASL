@@ -47,7 +47,7 @@ public class Register extends HttpServlet {
 		emp.setPassword(req.getParameter("password"));
 		emp.setCity(req.getParameter("city"));
 		emp.setDob(req.getParameter("dob"));
-		emp.setPassword(req.getParameter("password"));
+		emp.setPassword("default");
 		PrintWriter out = res.getWriter();
 		
 		SelectQuery sq=new SelectQuery();
