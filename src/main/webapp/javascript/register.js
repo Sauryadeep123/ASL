@@ -98,6 +98,7 @@ $(document).ready(function() {
 
 
 					// Add the class to highlight the row
+					$(document).scrollTop($(document).height());
 					console.log("highlight");
 					 // Get the table rows
       var rowss = document.getElementsByTagName('tr');
