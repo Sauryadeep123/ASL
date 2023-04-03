@@ -67,7 +67,7 @@ $(document).ready(function() {
 							 $("#successMessage").addClass("text-danger");
 						}
 						else{
-							$("#successMessage").text("User Successfully Registered");
+							$("#successMessage").text(data[data.length-1].email+" Successfully Registered");
 							 $("#successMessage").addClass("text-success");
 						}
 						
