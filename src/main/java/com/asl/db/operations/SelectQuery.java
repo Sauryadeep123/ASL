@@ -5,12 +5,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.asl.connector.Connector;
 import com.asl.db.entity.Employee;
 import com.asl.db.entity.EmployeeDetails;
-
-public class SelectQuery {
+import java.util.*
+;public class SelectQuery {
 	Connection conn = null;
 
 	public  boolean isValidUser(String email1, String password1) {
@@ -91,8 +92,16 @@ public class SelectQuery {
 					e1.setFirstName(rs1.getString("first_name"));
 					e1.setEmail(rs1.getString("email"));
                     e1.setSerialNo(rs1.getInt("id"));
-                   String image=getImage(e1.getSerialNo());
-                   e1.setPhoto(image);
+                    e1.setUserid(rs1.getString("user_id"));
+                    e1.setPassword(rs1.getString("password"));
+                    Map<String,String> map=getImage(e1.getSerialNo());
+                   e1.setPhoto(map.get("middlename"));
+                   e1.setLastName(map.get("lastname"));
+                   e1.setDob(map.get("dob"));
+                   e1.setCity(map.get("city"));
+                   e1.setPhoto(map.get("photo"));
+                   e1.setResume(map.get("resume"));
+                   
                    System.out.println(e1.getFirstName()+" "+e1.getEmail()+" "+e1.getPhoto()+" "+e1.getSerialNo());
                    list.add(e1);
         				
@@ -113,7 +122,7 @@ public class SelectQuery {
 		return null;
 	}
 	
-	public  String getImage(int id1) {
+	public Map<String,String> getImage(int id1) {
 		conn = Connector.getConnection();
 		System.out.println("id "+id1);
 
@@ -124,20 +133,27 @@ public class SelectQuery {
 
 			String sql = "select * from employee_details";
 			p = conn.prepareStatement(sql);
+			Map<String,String> map=new HashMap<>();
 			rs = p.executeQuery();
 			while (rs.next()) {
 				int id2=rs.getInt("id");
 				if (id1==id2) {
 
-					return rs.getString("photo");
+					map.put("middlename", rs.getString("middle_name"));
+					map.put("lastname", rs.getString("last_name"));
+					map.put("city", rs.getString("city"));
+					map.put("dob", rs.getString("dob"));
+					map.put("photo", rs.getString("photo"));
+					map.put("resume", rs.getString("resume"));
 				}
 			}
+			return map;
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return "-1";
+		return null;
 
 	}
 	public  String getId(String email1) {
