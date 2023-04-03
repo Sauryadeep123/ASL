@@ -75,24 +75,7 @@ $(document).ready(function() {
 
 
 
-						function buildTable(data) {
-							var table = document.getElementById('table')
-							console.log(data.length);
-
-							for (var i = 0; i < data.length; i++) {
-								var row = `<tr>
-							<td>${data[i].serialNo}</td>
-							<td><span class="truncate">${data[i].firstName}<span class="tooltiptext">${data[i].firstName}</span></span></td>
-							<td>${data[i].email}</td>
-							<td><img src="photo/${data[i].photo}" alt="" style="width: 150px;"></td>
-							<td></td>
 						
-					  </tr>`
-								table.innerHTML += row
-
-
-							}
-						}
 						$("#myform").hide();
 						$("#mainresponse").fadeIn();
 						$("#wrong").hide();
@@ -146,6 +129,24 @@ $(document).ready(function() {
 	});
 
 });
+function buildTable(data) {
+							var table = document.getElementById('table')
+							console.log(data.length);
+
+							for (var i = 0; i < data.length; i++) {
+								var row = `<tr>
+							<td>${data[i].serialNo}</td>
+							<td><span class="truncate">${data[i].firstName}<span class="tooltiptext">${data[i].firstName}</span></span></td>
+							<td>${data[i].email}</td>
+							<td><img src="photo/${data[i].photo}" alt="" style="width:50px;height:50px"></td>
+							<td></td>
+						
+					  </tr>`
+								table.innerHTML += row
+
+
+							}
+						}
 
 function getCookie(name) {
 	var cookies = document.cookie.split(';');
