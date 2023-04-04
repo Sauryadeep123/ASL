@@ -49,8 +49,7 @@
 					<div class="card m-8" id="maindiv">
 						<div class="card-body" id="form1">
 							<div class="row align-items-center py-3 d-none" id="warning">
-								<h3 class="text-danger text-center" id="wrong" style="">Wrong
-									user id or password</h3>
+								<h3 class="text-danger text-center" id="wrong" style="">Only Admin can login</h3>
 							</div>
 							<form method="post" onsubmit="return validate()" id="myform">
 								<div class="row align-items-center py-3">
@@ -79,8 +78,10 @@
 							<div id="mainresponse">
 								<div class="container">
 									<h1 class="text text-success text-center ">ASL</h1>
+									 <button class="btn btn-primary" id="btn" onclick="document.location='Register.html'">Register New Employee</button>
 									<h6 class="text text-success text-center">List of
 										Employees asl</h6>
+										 
 
 
 									<table class="table table-striped">

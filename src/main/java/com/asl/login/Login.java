@@ -22,6 +22,7 @@ import com.asl.connector.Connector;
 import com.asl.db.entity.Employee;
 import com.asl.db.entity.EmployeeDetails;
 import com.asl.db.operations.SelectQuery;
+import com.asl.resources.Constant;
 import com.google.gson.Gson;
 
 
@@ -75,6 +76,16 @@ public class Login extends HttpServlet {
 		SelectQuery obj=new SelectQuery();
 		if (obj.isValidUser(email1)) {
 			System.out.println("user present!!!!!!!");
+			if(!email1.equals(Constant.admin))
+			{
+				Map<String,String> map=new HashMap<>();
+				map.put("success", "false");
+				Gson gson = new Gson();
+				String json = gson.toJson(map);
+				out.print(json);
+				System.out.println("user not present");
+				return;
+			}
 			
 			list=obj.showEmployee();
 
