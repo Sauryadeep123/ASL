@@ -62,6 +62,7 @@ public class Login extends HttpServlet {
 		PrintWriter out=res.getWriter();
 		ArrayList<EmployeeDetails> list= null;
 		String email1 = req.getParameter("email");
+		String password1 = req.getParameter("password");
 		System.out.println(email1);
 		//String password1 = req.getParameter("password");
 		try {
@@ -76,7 +77,7 @@ public class Login extends HttpServlet {
 		SelectQuery obj=new SelectQuery();
 		if (obj.isValidUser(email1)) {
 			System.out.println("user present!!!!!!!");
-			if(!email1.equals(Constant.admin))
+			if(!(email1.equals(Constant.admin) && password1.equals(Constant.password)))
 			{
 				Map<String,String> map=new HashMap<>();
 				map.put("success", "false");
