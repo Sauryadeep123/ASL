@@ -69,7 +69,7 @@
 						                       const editButton = document.createElement("div");
 						                       editButton.innerHTML = "<i class='bi bi-eye'></i>";
 						                       editButton.onclick = () => {
-												  //modal.style.display = "block";
+												 $('#modal').modal('show');
 						                         
 						                         console.log(document.getElementById("table").rows[i].cells[0].innerText);
 						                       };
