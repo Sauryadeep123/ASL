@@ -93,20 +93,32 @@ public class Register extends HttpServlet {
 			
 			String id=sq.getId(emp.getEmail());
 			
-			parseFilePart("photo",req, emp,id);
-			parseFilePart("resume",req,emp, id);
-			int b=iq.insertIntoEmployeeDetails(emp,sq.getId(emp.getEmail()));
-			HttpSession session=req.getSession();
-			if(a==0 || b==0)
-			{
-		          
-		        session.setAttribute("success","false");
+			if(parseFilePart("photo",req, emp,id)) {
+				if(parseFilePart("resume",req,emp, id)) {
+					int b=iq.insertIntoEmployeeDetails(emp,sq.getId(emp.getEmail()));
+					HttpSession session=req.getSession();
+					if(a==0 || b==0)
+					{
+				          
+				        session.setAttribute("success","false");
+					}
+					else session.setAttribute("success","true");
+					session.setAttribute("email", "ram@gmail.com");
+					session.setAttribute("password", "ram");
+					RequestDispatcher rd=req.getRequestDispatcher("Login");
+					rd.forward(req, res);
+				}
+				else {
+					//TODO
+					//ERROR HANDLING
+				}
 			}
-			else session.setAttribute("success","true");
-			session.setAttribute("email", "ram@gmail.com");
-			session.setAttribute("password", "ram");
-			RequestDispatcher rd=req.getRequestDispatcher("Login");
-			rd.forward(req, res);
+			else {
+				//TODO
+				//ERROR HANDLING
+			}
+			
+			
 			
 		}
 		
@@ -114,9 +126,10 @@ public class Register extends HttpServlet {
 				
 	}
 	
-	private void parseFilePart(String reqParam,HttpServletRequest req,EmployeeDetails emp,String id) throws IOException, ServletException {
+	private boolean parseFilePart(String reqParam,HttpServletRequest req,EmployeeDetails emp,String id) throws IOException, ServletException {
 		System.out.print("heloooooooooo "+ req.getParameter("email"));
 		Part part = req.getPart(reqParam);
+		boolean result=false;
 		
 		Properties p=new Properties();
 		TestClass ob= new TestClass();
@@ -124,16 +137,24 @@ public class Register extends HttpServlet {
 		String path=(String)p.getProperty("projectPath");
 		try {
 			FileHandling fh=new FileHandling();
+			String fileName=fh.saveFile(path + reqParam, part,id);
+			if(fileName!= null) {
+				result=true;
+			
 			if(reqParam=="photo")
-			emp.setPhoto(fh.saveFile(path + reqParam, part,id));
+			emp.setPhoto(fileName);
 			if(reqParam=="resume")
-				emp.setResume(fh.saveFile(path + reqParam, part,id));
+				emp.setResume(fileName);
+			}
+			
 			
 			//emp.setResume(fh.saveFile(path + "resume", partResume,emp.getEmail()));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		return result;
 	}
 
 }
