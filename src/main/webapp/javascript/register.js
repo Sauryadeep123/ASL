@@ -88,14 +88,26 @@ $(document).ready(function() {
 					const table = document.getElementById("table");
 					const rows = table.rows;
 
-					for (let i = 0; i < rows.length; i++) {
-						const editButton = document.createElement("div");
-						editButton.innerHTML = "<i class='bi bi-eye'></i>";
-						editButton.onclick = () => {
-
-							console.log(document.getElementById("table").rows[i].cells[0].innerText);
-						};
-
+					 for (let i = 0; i < rows.length; i++) {
+						                       const editButton = document.createElement("div");
+						                       editButton.innerHTML = "<i class='bi bi-eye'></i>";
+						                       var firstName = document.getElementById("firstName");
+						                       var middleName = document.getElementById("middleName");
+						                       var lastName = document.getElementById("lastName");
+						                       var emailmodal = document.getElementById("emailmodal");
+						                       var dob = document.getElementById("dob");
+						                       var city = document.getElementById("city");
+						                       editButton.onclick = () => {
+												 $('#modal').modal('show');
+						                         firstName.value=data[i].firstName;
+						                         if (typeof data[i].middleName !== 'undefined')
+						                          middleName.value=data[i].middleName;
+						                        lastName.value=data[i].lastName;
+						                        emailmodal.value=data[i].email;
+						                        dob.value=data[i].dob;
+						                        city.value=data[i].city;
+						                        console.log(data[i].emailmodal);
+						                       };
 						const cell = rows[i].insertCell(4);
 						cell.appendChild(editButton);
 					}
