@@ -1,7 +1,7 @@
 /**
  * 
  */
-
+//
  $(document).ready(function() {
                      $('#submitBtn').click(function(event) {
 							event.preventDefault();
