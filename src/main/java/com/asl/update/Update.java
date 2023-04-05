@@ -22,18 +22,17 @@ public class Update extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-
-		EmployeeDetails emp = new EmployeeDetails();
-
-		emp.setFirstName(req.getParameter("firstName"));
-		emp.setMiddleName(req.getParameter("middleName"));
-		emp.setLastName(req.getParameter("lastName"));
-		//emp.setEmail(req.getParameter("email"));
-		emp.setPassword(req.getParameter("password"));
-		emp.setCity(req.getParameter("city"));
-		emp.setDob(req.getParameter("dob"));
-		emp.setPassword(req.getParameter("password"));
+	System.out.println("update");
+//		EmployeeDetails emp = new EmployeeDetails();
+//
+//		emp.setFirstName(req.getParameter("firstName"));
+//		emp.setMiddleName(req.getParameter("middleName"));
+//		emp.setLastName(req.getParameter("lastName"));
+//		//emp.setEmail(req.getParameter("email"));
+//		emp.setPassword(req.getParameter("password"));
+//		emp.setCity(req.getParameter("city"));
+//		emp.setDob(req.getParameter("dob"));
+//		emp.setPassword(req.getParameter("password"));
 		
 		
 	}

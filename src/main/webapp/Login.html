@@ -33,6 +33,7 @@
 
 <script src="javascript/login.js"></script>
 <script src="javascript/openRegister.js"></script>
+<script src="javascript/logout.js"></script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link rel="stylesheet"
@@ -79,7 +80,12 @@
 							<div id="mainresponse">
 								<div class="container">
 									<h1 class="text text-success text-center ">ASL</h1>
-									 <button class="btn btn-primary" id="btn" onclick="openRegister()">Register New Employee</button>
+									<div class="float-right "> 
+									 <h6 class="text-secondary text-center ">Admin</h6>
+									 <button class="btn btn-primary " id="logout" onclick="logout()">LOGOUT</button>
+									</div>
+									 <button class="btn btn-primary" id="btn" onclick="openRegister()">Register New Employee</button><br><br>
+									
 									<h6 class="text text-success text-center">List of
 										Employees asl</h6>
 										 

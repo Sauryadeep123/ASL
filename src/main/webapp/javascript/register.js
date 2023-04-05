@@ -77,6 +77,24 @@ $(document).ready(function() {
 						}
 
 						buildTable(data)
+						function buildTable(data) {
+							var table = document.getElementById('table')
+							console.log(data.length);
+
+							for (var i = 0; i < data.length; i++) {
+								var row = `<tr>
+							<td>${data[i].serialNo}</td>
+							<td><span class="truncate">${data[i].firstName}<span class="tooltiptext">${data[i].firstName}</span></span></td>
+						<td><span class="truncate">${data[i].email}<span class="tooltiptext">${data[i].email}</span></span></td>
+							<td><img src="photo/${data[i].photo}" alt="" style="width:50px;height:50px"></td>
+							<td></td>
+						
+					  </tr>`
+								table.innerHTML += row
+
+
+							}
+						}
 
 
 
@@ -91,12 +109,12 @@ $(document).ready(function() {
 					 for (let i = 0; i < rows.length; i++) {
 						                       const editButton = document.createElement("div");
 						                       editButton.innerHTML = "<i class='bi bi-eye'></i>";
-						                       var firstName = document.getElementById("firstName");
-						                       var middleName = document.getElementById("middleName");
-						                       var lastName = document.getElementById("lastName");
+						                       var firstName = document.getElementById("firstNamemodal");
+						                       var middleName = document.getElementById("middleNamemodal");
+						                       var lastName = document.getElementById("lastNamemodal");
 						                       var emailmodal = document.getElementById("emailmodal");
-						                       var dob = document.getElementById("dob");
-						                       var city = document.getElementById("city");
+						                       var dob = document.getElementById("dobmodal");
+						                       var city = document.getElementById("citymodal");
 						                       editButton.onclick = () => {
 												 $('#modal').modal('show');
 						                         firstName.value=data[i].firstName;
@@ -106,7 +124,8 @@ $(document).ready(function() {
 						                        emailmodal.value=data[i].email;
 						                        dob.value=data[i].dob;
 						                        city.value=data[i].city;
-						                        console.log(data[i].emailmodal);
+						                        console.log(data);
+						                        console.log(data[i].firstName);
 						                       };
 						const cell = rows[i].insertCell(4);
 						cell.appendChild(editButton);
@@ -147,24 +166,7 @@ $(document).ready(function() {
 	});
 
 });
-function buildTable(data) {
-							var table = document.getElementById('table')
-							console.log(data.length);
 
-							for (var i = 0; i < data.length; i++) {
-								var row = `<tr>
-							<td>${data[i].serialNo}</td>
-							<td><span class="truncate">${data[i].firstName}<span class="tooltiptext">${data[i].firstName}</span></span></td>
-						<td><span class="truncate">${data[i].email}<span class="tooltiptext">${data[i].email}</span></span></td>
-							<td><img src="photo/${data[i].photo}" alt="" style="width:50px;height:50px"></td>
-							<td></td>
-						
-					  </tr>`
-								table.innerHTML += row
-
-
-							}
-						}
 
 function getCookie(name) {
 	var cookies = document.cookie.split(';');
