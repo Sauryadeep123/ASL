@@ -18,6 +18,11 @@
 
 
 $(document).ready(function() {
+	console.log(sessionStorage.getItem("user"));
+	if(sessionStorage.getItem("user")!="admin"){
+		alert("You need to first login as admin to register");
+		window.location.href = "Login.html";
+	}
 	console.log("before button click")
 
 	$("#submitBtn").click(function(event) {

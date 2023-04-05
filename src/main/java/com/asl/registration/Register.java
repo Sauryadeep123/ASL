@@ -38,7 +38,9 @@ public class Register extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		System.out.print("aya re");
+		HttpSession session=req.getSession();
 		EmployeeDetails emp=new EmployeeDetails();
+		
 		
 		emp.setFirstName(req.getParameter("firstName"));
 		emp.setMiddleName(req.getParameter("middleName"));
@@ -96,7 +98,7 @@ public class Register extends HttpServlet {
 			if(parseFilePart("photo",req, emp,id)) {
 				if(parseFilePart("resume",req,emp, id)) {
 					int b=iq.insertIntoEmployeeDetails(emp,sq.getId(emp.getEmail()));
-					HttpSession session=req.getSession();
+					
 					if(a==0 || b==0)
 					{
 				          

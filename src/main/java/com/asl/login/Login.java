@@ -65,15 +65,12 @@ public class Login extends HttpServlet {
 		String password1 = req.getParameter("password");
 		System.out.println(email1);
 		//String password1 = req.getParameter("password");
-		try {
-		 HttpSession session=req.getSession(false);  
-		 if(session!=null) {
+		
+		HttpSession session=req.getSession();
+		 if(session.getAttribute(email1)!=null) {
 	        email1=(String)session.getAttribute("email");
-	       // password1=(String)session.getAttribute("password");
+	       password1=(String)session.getAttribute("password");
 		 }
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
 		SelectQuery obj=new SelectQuery();
 		if (obj.isValidUser(email1)) {
 			System.out.println("user present!!!!!!!");
@@ -94,8 +91,6 @@ public class Login extends HttpServlet {
 			String json = gson.toJson(list);
 			System.out.println(json);
 			out.print(json);
-			try {
-				 HttpSession session=req.getSession(false);
 			if(session.getAttribute("succes")=="false")
 			{
 			   Cookie ck=new Cookie("insert","false"); 
@@ -104,10 +99,14 @@ public class Login extends HttpServlet {
 				Cookie ck=new Cookie("insert",email1); 
 				res.addCookie(ck);
 			}
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
-		
+			
+			session.setAttribute("user","admin");
+//			Map<String,String> map1=new HashMap<>();
+//			map1.put("user", "admin");
+//			Gson gson1 = new Gson();
+//			String json1 = gson1.toJson(map1);
+//			out.print(json1);
+//		
 
 		} else {
 		//	responseData.put("success", "false");
