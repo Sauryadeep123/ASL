@@ -67,7 +67,8 @@ public class Login extends HttpServlet {
 		//String password1 = req.getParameter("password");
 		
 		HttpSession session=req.getSession();
-		 if(session.getAttribute(email1)!=null) {
+		System.out.println("the session email is "+ session.getAttribute("email"));
+		 if(session.getAttribute("email")!=null) {
 	        email1=(String)session.getAttribute("email");
 	       password1=(String)session.getAttribute("password");
 		 }
